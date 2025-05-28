@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-image: url(IMG_20250528_213553.png.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-form {
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .login-form h1,
+    .login-form label {
+      color: lightgoldenrodyellow;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .login-form button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: lightgoldenrodyellow;
+      
+      cursor: pointer;
+    }
+
+    .login-form button:hover {
+      background-color: rgb(235, 219, 130);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-form">
+    <h1>Login Account</h1>
+  
+    <form>
+      
+      <label for="username">Enter Username</label><br>
+      <input type="text" id="username" name="username" placeholder="Username"><br>
+      <label for="password">Enter Password</label><br>
+      <input type="password" id="password" name="password" placeholder="Password"><br>
+      <button type="submit">Login</button>
+    </form>
+      <img src="logo.png" width="100px" height="100px">
+  </div>
+</body>
+</html>

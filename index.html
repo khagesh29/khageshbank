@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head> 
+
+<title>Bank</title>
+<style>
+   body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("mainlogo.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+   
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+button             
+{
+background-color: rgba(237, 121, 121, 0);
+
+background-repeat: no-repeat;
+background-position: center;
+}                   
+.container1
+{
+height: 90px;      
+display: flex;
+justify-content: space-between;
+background-color:  rgba(237, 121, 121, 0);    
+align-items: center;  
+}
+img
+{
+margin-left: 50px;
+}
+.box
+{
+display: flex;
+justify-content: space-evenly;
+width: 600px;                    
+}
+@media(max-width:900px)
+{
+.box
+{
+visibility: hidden;
+display: none;                    
+}             
+.container
+{
+justify-content: center;                    
+}       
+}
+marquee{
+    color: aliceblue;
+  background-color: ;
+}
+footer{
+                    position: relative;
+                    bottom: auto;
+                    width: 100%;
+                    margin-top: 38.5%;
+}
+</style>
+</head>
+<body>
+ 
+
+
+<div class="container1">
+<img src="logo.png" width="90px" height="90px"/>
+
+<div class="box">
+         
+<button><a href="details.html" style="color: rgb(255, 224, 51);">Details</a></button>    
+<button><a href="loans.html" style="color:  rgb(255, 224, 51);">Loans</a></button>
+<button><a href="services.html"style="color:  rgb(255, 224, 51);">Services</a></button>
+<button><a href="Login.html" style="color: rgb(255, 224, 51);">Login</a></button>
+</div> 
+</div>
+
+
+  <footer class="footer"><marquee direction="right" width="100%" height="40px" >
+  🏦 💸💸💸💸💸 Welcome to KHAGESH Bank – Your trusted financial partner offering secure, smart,
+   and innovative banking solutions tailored to your needs, and 24/7 support.💸💸💸💸💸 🏦
+
+ </marquee>
+ </footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Status of Loan Application</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background-image: url('IMG_20250528_213553.png.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+    }
+
+    form {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      background-color: #d8c362;
+      font-style: italic;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgb(241, 241, 64);
+      padding: 10px;
+      color: white;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: lightgoldenrodyellow;
+      
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: rgb(220, 199, 77);
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <h1>STATUS OF LOAN APPLICATION</h1>
+
+    <label>Loan Product</label>
+    <input type="text" placeholder="Type of product">
+
+    <label>Application ID</label>
+    <input type="text" placeholder="Application ID">
+
+    <label>Date of Birth</label>
+    <input type="date" placeholder="dd-mm-yyyy">
+
+    <label>Address of the Customer</label>
+    <input type="text" placeholder="Address">
+
+    <label>Phone 91:</label>
+    <input type="tel" placeholder="Phone Number">
+
+    <label>Enter OTP Verification</label>
+    <input type="number" placeholder="OTP">
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
