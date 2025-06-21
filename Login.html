@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login Page</title>
+  <meta charset="UTF-8" />
+  <title>Login & Signup Page</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-image: url(IMG_20250528_213553.png.jpg);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
-    .login-form {
-      width: 300px;
+    .form-container {
+      width: 320px;
       padding: 20px;
       border: 1px solid #ccc;
-      text-align: center;
       border-radius: 8px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     }
 
-    .login-form h1,
-    .login-form label {
+    .form-container h1,
+    .form-container label {
       color: lightgoldenrodyellow;
     }
 
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
       width: 90%;
       padding: 10px;
       margin: 10px 0;
@@ -38,34 +46,194 @@
       border-radius: 4px;
     }
 
-    .login-form button {
+    input.error {
+      border: 2px solid red;
+    }
+
+    button {
       padding: 10px 20px;
       margin-top: 10px;
       border: none;
       border-radius: 4px;
       background-color: lightgoldenrodyellow;
-      
       cursor: pointer;
     }
 
-    .login-form button:hover {
+    button:hover {
       background-color: rgb(235, 219, 130);
+    }
+
+    .toggle {
+      margin-top: 15px;
+      color: white;
+    }
+
+    .toggle a {
+      color: lightgoldenrodyellow;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    form {
+      display: none;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    .form-container img {
+      margin-top: 15px;
+    }
+
+    .welcome {
+      text-align: center;
+      color: white;
+    }
+
+    .welcome button {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="login-form">
-    <h1>Login Account</h1>
-  
-    <form>
-      
-      <label for="username">Enter Username</label><br>
-      <input type="text" id="username" name="username" placeholder="Username"><br>
+  <div class="form-container" id="auth-container">
+    <h1 id="form-title">Login Account</h1>
+
+    <!-- Login Form -->
+    <form id="login-form" class="active">
+      <label for="username">Enter Email</label><br>
+      <input type="email" id="login-email" name="username" placeholder="Email"><br>
+
       <label for="password">Enter Password</label><br>
-      <input type="password" id="password" name="password" placeholder="Password"><br>
+      <input type="password" id="login-password" name="password" placeholder="Password"><br>
+
       <button type="submit">Login</button>
     </form>
-      <img src="logo.png" width="100px" height="100px">
+
+    <!-- Signup Form -->
+    <form id="signup-form">
+      <label for="fullname">Enter Full Name</label><br>
+      <input type="text" id="fullname" name="fullname" placeholder="Full Name"><br>
+
+      <label for="email">Enter Email</label><br>
+      <input type="email" id="email" name="email" placeholder="Email" required><br>
+
+      <label for="new-password">Create Password</label><br>
+      <input type="password" id="new-password" name="new-password" placeholder="Password"><br>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="toggle">
+      <span id="toggle-text">Don't have an account? <a onclick="toggleForms()">Sign Up</a></span>
+    </div>
+
+    <img src="logo.png" width="100px" height="100px">
   </div>
+
+  <!-- Welcome Section -->
+  <div id="welcome-container" class="welcome" style="display: none;">
+    <h1>Welcome!</h1>
+    <p>You have successfully logged in.</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("login-form");
+    const signupForm = document.getElementById("signup-form");
+    const formTitle = document.getElementById("form-title");
+    const toggleText = document.getElementById("toggle-text");
+    const authContainer = document.getElementById("auth-container");
+    const welcomeContainer = document.getElementById("welcome-container");
+
+    function toggleForms() {
+      if (loginForm.classList.contains("active")) {
+        loginForm.classList.remove("active");
+        signupForm.classList.add("active");
+        formTitle.textContent = "Create Account";
+        toggleText.innerHTML = `Already have an account? <a onclick="toggleForms()">Login</a>`;
+      } else {
+        signupForm.classList.remove("active");
+        loginForm.classList.add("active");
+        formTitle.textContent = "Login Account";
+        toggleText.innerHTML = `Don't have an account? <a onclick="toggleForms()">Sign Up</a>`;
+      }
+    }
+
+    // Handle Sign Up
+    signupForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const fullname = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("new-password").value;
+      const emailInput = document.getElementById("email");
+      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+      emailInput.classList.remove("error");
+
+      if (!fullname || !email || !password) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email (e.g., example@gmail.com).");
+        emailInput.classList.add("error");
+        emailInput.focus();
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      const emailExists = users.some(user => user.email === email);
+
+      if (emailExists) {
+        alert("Email already registered!");
+        return;
+      }
+
+      users.push({ fullname, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Registration Successful!");
+      signupForm.reset();
+      toggleForms();
+    });
+
+    // Handle Login
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("login-email").value.trim();
+      const password = document.getElementById("login-password").value;
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const matchedUser = users.find(user => user.email === email && user.password === password);
+
+      if (matchedUser) {
+        alert("Login successful!");
+        localStorage.setItem("loggedInUser", JSON.stringify(matchedUser));
+        window.location.href = "index.html?loggedin=true";
+      } else {
+        alert("Invalid email or password!");
+      }
+    });
+
+    // Handle Post-login Redirect
+    window.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("loggedin") === "true") {
+        authContainer.style.display = "none";
+        welcomeContainer.style.display = "block";
+      }
+    });
+
+    // Logout Function
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 </html>
